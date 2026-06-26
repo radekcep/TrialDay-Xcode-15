@@ -10,28 +10,52 @@ import FactoryKit
 import UIKit
 import RxSwift
 
-class RootCoordinator {
+protocol RootCoordinatorProtocol: Coordinator {}
+
+class RootCoordinator: RootCoordinatorProtocol {
     @Injected(\.getAppLaunchCountUseCase) var getAppLaunchCountUseCase
     @Injected(\.incrementAppLaunchCountUseCase) var incrementAppLaunchCountUseCase
     
     let window: UIWindow
+    var childCoordinators: [Coordinator] = []
     
     init(window: UIWindow) {
         self.window = window
     }
     
-    func start() -> Observable<Never> {
-        window.rootViewController = UIViewController()
+    func start() -> Single<Void> {
+        let rootViewController = UIViewController()
+        rootViewController.view.backgroundColor = .systemBackground
+        window.rootViewController = rootViewController
         window.makeKeyAndVisible()
         
         incrementAppLaunchCountUseCase()
         
-        return .never()
+        return if getAppLaunchCountUseCase() == 1 {
+            presentSplash(over: rootViewController)
+                .asObservable()
+                .withUnretained(self)
+                .flatMapLatest { $0.0.presentTransactionsList() }
+                .asSingle()
+        } else {
+            presentTransactionsList()
+        }
+    }
+}
+
+private extension RootCoordinator {
+    func presentSplash(over viewController: UIViewController) -> Single<Void> {
+        let splashScreenCoordinator = Container.shared.splashScreenCoordinator(viewController)
+        return start(splashScreenCoordinator)
+    }
+    
+    func presentTransactionsList() -> Single<Void> {
+        .never()
     }
 }
 
 extension Container {
-    var rootCoordinator: ParameterFactory<UIWindow, RootCoordinator> {
+    var rootCoordinator: ParameterFactory<UIWindow, RootCoordinatorProtocol> {
         self(RootCoordinator.init)
     }
 }

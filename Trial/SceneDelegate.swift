@@ -11,7 +11,7 @@ import UIKit
 import RxSwift
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-    var rootCoordinator: RootCoordinator?
+    var rootCoordinator: RootCoordinatorProtocol?
     var disposeBag = DisposeBag()
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
