@@ -19,6 +19,9 @@
 		BF7ED0552FEE87F600B44EDB /* Stub.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7ED0542FEE87F400B44EDB /* Stub.swift */; };
 		BF7ED0582FEE8B6400B44EDB /* GetAppLaunchCountUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7ED0572FEE8B6000B44EDB /* GetAppLaunchCountUseCaseTests.swift */; };
 		BF7ED05A2FEE8C3E00B44EDB /* RootCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7ED0592FEE8C3B00B44EDB /* RootCoordinatorTests.swift */; };
+		BF7ED05D2FEE8DA100B44EDB /* DogeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7ED05C2FEE8D9900B44EDB /* DogeView.swift */; };
+		BF7ED0602FEE906100B44EDB /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = BF7ED05F2FEE906100B44EDB /* SnapKit */; };
+		BF7ED0702FEEC7C300B44EDB /* Spacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7ED06F2FEEC7C100B44EDB /* Spacing.swift */; };
 		E1070CA8203B219B009EECE4 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1070CA7203B219B009EECE4 /* Models.swift */; };
 		E1088D4D2031E49300889B04 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1088D4C2031E49300889B04 /* AppDelegate.swift */; };
 		E1088D542031E49300889B04 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1088D532031E49300889B04 /* Assets.xcassets */; };
@@ -50,6 +53,8 @@
 		BF7ED0542FEE87F400B44EDB /* Stub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stub.swift; sourceTree = "<group>"; };
 		BF7ED0572FEE8B6000B44EDB /* GetAppLaunchCountUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAppLaunchCountUseCaseTests.swift; sourceTree = "<group>"; };
 		BF7ED0592FEE8C3B00B44EDB /* RootCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinatorTests.swift; sourceTree = "<group>"; };
+		BF7ED05C2FEE8D9900B44EDB /* DogeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogeView.swift; sourceTree = "<group>"; };
+		BF7ED06F2FEEC7C100B44EDB /* Spacing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spacing.swift; sourceTree = "<group>"; };
 		E1070CA7203B219B009EECE4 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		E1088D492031E49300889B04 /* Trial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Trial.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1088D4C2031E49300889B04 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -68,6 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF7ED0602FEE906100B44EDB /* SnapKit in Frameworks */,
 				BF7ED03F2FEE7F3900B44EDB /* FactoryKit in Frameworks */,
 				BF7ECFD22FEE7E3D00B44EDB /* RxSwift in Frameworks */,
 			);
@@ -112,6 +118,7 @@
 		BF7ED0402FEE80C200B44EDB /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				BF7ED05B2FEE8D9200B44EDB /* View */,
 				BF7ED04B2FEE846200B44EDB /* Data */,
 				BF7ED04A2FEE844E00B44EDB /* Extensions */,
 			);
@@ -160,6 +167,15 @@
 				BF7ED0522FEE876900B44EDB /* MockKeyValueStorage.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		BF7ED05B2FEE8D9200B44EDB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BF7ED06F2FEEC7C100B44EDB /* Spacing.swift */,
+				BF7ED05C2FEE8D9900B44EDB /* DogeView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		E1088D402031E49300889B04 = {
@@ -279,6 +295,7 @@
 			packageReferences = (
 				BF7ECFCF2FEE7CC000B44EDB /* XCRemoteSwiftPackageReference "RxSwift" */,
 				BF7ED03D2FEE7F2600B44EDB /* XCRemoteSwiftPackageReference "Factory" */,
+				BF7ED05E2FEE905800B44EDB /* XCRemoteSwiftPackageReference "SnapKit" */,
 			);
 			productRefGroup = E1088D4A2031E49300889B04 /* Products */;
 			projectDirPath = "";
@@ -317,9 +334,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				BF7ECFCE2FEE7C4700B44EDB /* RootCoordinator.swift in Sources */,
+				BF7ED05D2FEE8DA100B44EDB /* DogeView.swift in Sources */,
 				E1088D4D2031E49300889B04 /* AppDelegate.swift in Sources */,
 				BF7ED04D2FEE852100B44EDB /* KeyValueStorage.swift in Sources */,
 				E1088D6F2031E67A00889B04 /* TransactionsAPI.swift in Sources */,
+				BF7ED0702FEEC7C300B44EDB /* Spacing.swift in Sources */,
 				BF7ED0422FEE80D200B44EDB /* Container+mainScheduler.swift in Sources */,
 				BF7ED0482FEE840400B44EDB /* IncrementAppLaunchCountUseCase.swift in Sources */,
 				E1070CA8203B219B009EECE4 /* Models.swift in Sources */,
@@ -607,6 +626,14 @@
 				minimumVersion = 3.2.1;
 			};
 		};
+		BF7ED05E2FEE905800B44EDB /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -619,6 +646,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = BF7ED03D2FEE7F2600B44EDB /* XCRemoteSwiftPackageReference "Factory" */;
 			productName = FactoryKit;
+		};
+		BF7ED05F2FEE906100B44EDB /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BF7ED05E2FEE905800B44EDB /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
