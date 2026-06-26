@@ -15,6 +15,9 @@ protocol RootCoordinatorProtocol {
 }
 
 class RootCoordinator: RootCoordinatorProtocol {
+    @Injected(\.getAppLaunchCountUseCase) var getAppLaunchCountUseCase
+    @Injected(\.incrementAppLaunchCountUseCase) var incrementAppLaunchCountUseCase
+    
     let window: UIWindow
     
     init(window: UIWindow) {
@@ -24,6 +27,9 @@ class RootCoordinator: RootCoordinatorProtocol {
     func start() -> Observable<Never> {
         window.rootViewController = UIViewController()
         window.makeKeyAndVisible()
+        
+        incrementAppLaunchCountUseCase()
+        
         return .never()
     }
 }
