@@ -3,10 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 48;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BF7ECFCE2FEE7C4700B44EDB /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7ECFCD2FEE7C4400B44EDB /* RootCoordinator.swift */; };
+		BF7ECFD22FEE7E3D00B44EDB /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = BF7ECFD12FEE7E3D00B44EDB /* RxSwift */; };
+		BF7ED03F2FEE7F3900B44EDB /* FactoryKit in Frameworks */ = {isa = PBXBuildFile; productRef = BF7ED03E2FEE7F3900B44EDB /* FactoryKit */; };
+		BF7ED0422FEE80D200B44EDB /* Container+mainScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7ED0412FEE80CA00B44EDB /* Container+mainScheduler.swift */; };
 		E1070CA8203B219B009EECE4 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1070CA7203B219B009EECE4 /* Models.swift */; };
 		E1088D4D2031E49300889B04 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1088D4C2031E49300889B04 /* AppDelegate.swift */; };
 		E1088D542031E49300889B04 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1088D532031E49300889B04 /* Assets.xcassets */; };
@@ -28,6 +32,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BF7ECFCD2FEE7C4400B44EDB /* RootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinator.swift; sourceTree = "<group>"; };
+		BF7ED0412FEE80CA00B44EDB /* Container+mainScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Container+mainScheduler.swift"; sourceTree = "<group>"; };
 		E1070CA7203B219B009EECE4 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		E1088D492031E49300889B04 /* Trial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Trial.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1088D4C2031E49300889B04 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -46,6 +52,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF7ED03F2FEE7F3900B44EDB /* FactoryKit in Frameworks */,
+				BF7ECFD22FEE7E3D00B44EDB /* RxSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -69,11 +77,35 @@
 			path = TransactionsAPI;
 			sourceTree = "<group>";
 		};
+		BF7ECFCC2FEE7C3500B44EDB /* RootFeature */ = {
+			isa = PBXGroup;
+			children = (
+				BF7ECFCD2FEE7C4400B44EDB /* RootCoordinator.swift */,
+			);
+			path = RootFeature;
+			sourceTree = "<group>";
+		};
+		BF7ECFD02FEE7E3D00B44EDB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BF7ED0402FEE80C200B44EDB /* Commons */ = {
+			isa = PBXGroup;
+			children = (
+				BF7ED0412FEE80CA00B44EDB /* Container+mainScheduler.swift */,
+			);
+			path = Commons;
+			sourceTree = "<group>";
+		};
 		E1088D402031E49300889B04 = {
 			isa = PBXGroup;
 			children = (
 				E1088D4B2031E49300889B04 /* Trial */,
 				E1088D602031E49300889B04 /* TrialTests */,
+				BF7ECFD02FEE7E3D00B44EDB /* Frameworks */,
 				E1088D4A2031E49300889B04 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -90,11 +122,13 @@
 		E1088D4B2031E49300889B04 /* Trial */ = {
 			isa = PBXGroup;
 			children = (
-				BF7ECFCB2FEE7B6200B44EDB /* TransactionsAPI */,
 				E1088D4C2031E49300889B04 /* AppDelegate.swift */,
 				E1088D552031E49300889B04 /* LaunchScreen.storyboard */,
 				E1088D532031E49300889B04 /* Assets.xcassets */,
 				E1088D582031E49300889B04 /* Info.plist */,
+				BF7ED0402FEE80C200B44EDB /* Commons */,
+				BF7ECFCC2FEE7C3500B44EDB /* RootFeature */,
+				BF7ECFCB2FEE7B6200B44EDB /* TransactionsAPI */,
 			);
 			path = Trial;
 			sourceTree = "<group>";
@@ -178,6 +212,10 @@
 				Base,
 			);
 			mainGroup = E1088D402031E49300889B04;
+			packageReferences = (
+				BF7ECFCF2FEE7CC000B44EDB /* XCRemoteSwiftPackageReference "RxSwift" */,
+				BF7ED03D2FEE7F2600B44EDB /* XCRemoteSwiftPackageReference "Factory" */,
+			);
 			productRefGroup = E1088D4A2031E49300889B04 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -214,8 +252,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF7ECFCE2FEE7C4700B44EDB /* RootCoordinator.swift in Sources */,
 				E1088D4D2031E49300889B04 /* AppDelegate.swift in Sources */,
 				E1088D6F2031E67A00889B04 /* TransactionsAPI.swift in Sources */,
+				BF7ED0422FEE80D200B44EDB /* Container+mainScheduler.swift in Sources */,
 				E1070CA8203B219B009EECE4 /* Models.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -358,7 +398,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -371,7 +412,10 @@
 				DEVELOPMENT_TEAM = LRA2GZ8MU6;
 				INFOPLIST_FILE = Trial/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = at.beeone.Trial;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -387,7 +431,10 @@
 				DEVELOPMENT_TEAM = LRA2GZ8MU6;
 				INFOPLIST_FILE = Trial/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = at.beeone.Trial;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -404,7 +451,11 @@
 				DEVELOPMENT_TEAM = LRA2GZ8MU6;
 				INFOPLIST_FILE = TrialTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = at.beeone.TrialTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -422,7 +473,11 @@
 				DEVELOPMENT_TEAM = LRA2GZ8MU6;
 				INFOPLIST_FILE = TrialTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = at.beeone.TrialTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -462,6 +517,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		BF7ECFCF2FEE7CC000B44EDB /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.10.2;
+			};
+		};
+		BF7ED03D2FEE7F2600B44EDB /* XCRemoteSwiftPackageReference "Factory" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hmlongco/Factory.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.2.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		BF7ECFD12FEE7E3D00B44EDB /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BF7ECFCF2FEE7CC000B44EDB /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+		BF7ED03E2FEE7F3900B44EDB /* FactoryKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BF7ED03D2FEE7F2600B44EDB /* XCRemoteSwiftPackageReference "Factory" */;
+			productName = FactoryKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E1088D412031E49300889B04 /* Project object */;
 }

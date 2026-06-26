@@ -1,0 +1,24 @@
+{
+  "originHash" : "7f4675e8dcfbe681c824e48944e43b7d607a5ef30e3ce5fcf03561695b00ce38",
+  "pins" : [
+    {
+      "identity" : "factory",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/hmlongco/Factory.git",
+      "state" : {
+        "revision" : "cacafd638e8af1dac8abd6a4ab013d53983e2703",
+        "version" : "3.2.1"
+      }
+    },
+    {
+      "identity" : "rxswift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ReactiveX/RxSwift.git",
+      "state" : {
+        "revision" : "132aea4f236ccadc51590b38af0357a331d51fa2",
+        "version" : "6.10.2"
+      }
+    }
+  ],
+  "version" : 3
+}
