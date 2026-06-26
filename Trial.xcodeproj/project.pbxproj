@@ -59,6 +59,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BF7ECFCB2FEE7B6200B44EDB /* TransactionsAPI */ = {
+			isa = PBXGroup;
+			children = (
+				E1088D712031F75600889B04 /* transactions.json */,
+				E1088D6E2031E67A00889B04 /* TransactionsAPI.swift */,
+				E1070CA7203B219B009EECE4 /* Models.swift */,
+			);
+			path = TransactionsAPI;
+			sourceTree = "<group>";
+		};
 		E1088D402031E49300889B04 = {
 			isa = PBXGroup;
 			children = (
@@ -80,13 +90,11 @@
 		E1088D4B2031E49300889B04 /* Trial */ = {
 			isa = PBXGroup;
 			children = (
-				E1088D712031F75600889B04 /* transactions.json */,
+				BF7ECFCB2FEE7B6200B44EDB /* TransactionsAPI */,
 				E1088D4C2031E49300889B04 /* AppDelegate.swift */,
-				E1088D532031E49300889B04 /* Assets.xcassets */,
 				E1088D552031E49300889B04 /* LaunchScreen.storyboard */,
+				E1088D532031E49300889B04 /* Assets.xcassets */,
 				E1088D582031E49300889B04 /* Info.plist */,
-				E1088D6E2031E67A00889B04 /* TransactionsAPI.swift */,
-				E1070CA7203B219B009EECE4 /* Models.swift */,
 			);
 			path = Trial;
 			sourceTree = "<group>";
