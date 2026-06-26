@@ -25,7 +25,6 @@
 		E1070CA8203B219B009EECE4 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1070CA7203B219B009EECE4 /* Models.swift */; };
 		E1088D4D2031E49300889B04 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1088D4C2031E49300889B04 /* AppDelegate.swift */; };
 		E1088D542031E49300889B04 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1088D532031E49300889B04 /* Assets.xcassets */; };
-		E1088D572031E49300889B04 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1088D552031E49300889B04 /* LaunchScreen.storyboard */; };
 		E1088D622031E49300889B04 /* TrialTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1088D612031E49300889B04 /* TrialTests.swift */; };
 		E1088D6F2031E67A00889B04 /* TransactionsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1088D6E2031E67A00889B04 /* TransactionsAPI.swift */; };
 		E1088D722031F75600889B04 /* transactions.json in Resources */ = {isa = PBXBuildFile; fileRef = E1088D712031F75600889B04 /* transactions.json */; };
@@ -59,7 +58,6 @@
 		E1088D492031E49300889B04 /* Trial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Trial.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1088D4C2031E49300889B04 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E1088D532031E49300889B04 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		E1088D562031E49300889B04 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E1088D582031E49300889B04 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E1088D5D2031E49300889B04 /* TrialTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TrialTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1088D612031E49300889B04 /* TrialTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrialTests.swift; sourceTree = "<group>"; };
@@ -201,7 +199,6 @@
 			isa = PBXGroup;
 			children = (
 				E1088D4C2031E49300889B04 /* AppDelegate.swift */,
-				E1088D552031E49300889B04 /* LaunchScreen.storyboard */,
 				E1088D532031E49300889B04 /* Assets.xcassets */,
 				E1088D582031E49300889B04 /* Info.plist */,
 				BF7ED0402FEE80C200B44EDB /* Common */,
@@ -312,7 +309,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E1088D572031E49300889B04 /* LaunchScreen.storyboard in Resources */,
 				E1088D542031E49300889B04 /* Assets.xcassets in Resources */,
 				E1088D722031F75600889B04 /* transactions.json in Resources */,
 			);

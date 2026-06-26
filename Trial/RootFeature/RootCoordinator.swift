@@ -10,11 +10,7 @@ import FactoryKit
 import UIKit
 import RxSwift
 
-protocol RootCoordinatorProtocol {
-    func start() -> Observable<Never>
-}
-
-class RootCoordinator: RootCoordinatorProtocol {
+class RootCoordinator {
     @Injected(\.getAppLaunchCountUseCase) var getAppLaunchCountUseCase
     @Injected(\.incrementAppLaunchCountUseCase) var incrementAppLaunchCountUseCase
     
@@ -35,7 +31,7 @@ class RootCoordinator: RootCoordinatorProtocol {
 }
 
 extension Container {
-    var rootCoordinator: ParameterFactory<UIWindow, RootCoordinatorProtocol> {
+    var rootCoordinator: ParameterFactory<UIWindow, RootCoordinator> {
         self(RootCoordinator.init)
     }
 }
