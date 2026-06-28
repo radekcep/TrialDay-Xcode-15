@@ -17,6 +17,8 @@ class TransactionsCoordinator: TransactionsCoordinatorProtocol {
     
     var childCoordinators: [Coordinator] = []
     
+    var disposeBag = DisposeBag()
+    
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
@@ -25,10 +27,30 @@ class TransactionsCoordinator: TransactionsCoordinatorProtocol {
         let transactionsViewController = Container.shared.transactionsViewController()
         let transactionsViewModel = Container.shared.transactionsViewModel(transactionsViewController.viewModelInput)
         transactionsViewController.bind(viewModel: transactionsViewModel)
+        bind(viewModel: transactionsViewModel)
         
         navigationController.pushViewController(transactionsViewController, animated: true)
         
         return .never()
+    }
+}
+
+private extension TransactionsCoordinator {
+    func bind(viewModel: TransactionsViewModel) {
+        viewModel
+            .outputToCoordinator
+            .openTransaction
+            .withUnretained(self)
+            .flatMapLatest { unretainedSelf, transaction in
+                let transactionDetailCoordinator = Container.shared.transactionDetailCoordinator((
+                    unretainedSelf.navigationController,
+                    transaction
+                ))
+                
+                return unretainedSelf.start(transactionDetailCoordinator)
+            }
+            .subscribe()
+            .disposed(by: disposeBag)
     }
 }
 

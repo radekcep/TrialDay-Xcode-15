@@ -65,6 +65,12 @@ private extension TransactionsViewController {
         tableView.refreshControl = refreshControl
         tableView.register(TransactionCell.self, forCellReuseIdentifier: Constant.transactionCellIdentifier)
         
+        tableView.rx.itemSelected
+            .bind(with: self) {
+                $0.tableView.deselectRow(at: $1, animated: true)
+            }
+            .disposed(by: disposeBag)
+        
         errorView.isHidden = true
     }
 }
@@ -74,7 +80,7 @@ private extension TransactionsViewController {
 extension TransactionsViewController {
     var viewModelInput: TransactionsViewModel.InputFromView {
         .init(
-            userClickedOnTransaction: .never(),
+            userClickedOnTransaction: tableView.rx.itemSelected.map(\.row),
             userClickOnRetry: errorView.retryButtonTap,
             userRefreshed: refreshControl.rx.controlEvent(.valueChanged).map { _ in () }
         )

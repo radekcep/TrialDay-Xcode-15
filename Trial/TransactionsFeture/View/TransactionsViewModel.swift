@@ -11,6 +11,12 @@ import FactoryKit
 import RxSwift
 
 class TransactionsViewModel {
+    fileprivate enum State {
+        case loading
+        case error(Error)
+        case transactions([Transaction])
+    }
+    
     enum ViewState: Equatable {
         case loading
         case error(String)
@@ -27,30 +33,42 @@ class TransactionsViewModel {
         let viewState: Observable<ViewState>
     }
     
+    struct OutputToCoordinator {
+        let openTransaction: Observable<Transaction>
+    }
+    
     @Injected(\.getTransactionsUseCase) var getTransactionsUseCase
     
     let inputFromView: InputFromView
      
-    private(set) lazy var outputToView = OutputToView(
-        viewState: Observable.merge([
+    private lazy var state: Observable<State> = Observable.merge([
             .just(()),
             inputFromView.userClickOnRetry,
             inputFromView.userRefreshed,
         ])
         .withUnretained(self)
-        .flatMapLatest { unretainedSelf, _ -> Observable<ViewState> in
-            .just(.loading)
-            .concat(
-                unretainedSelf.getTransactionsUseCase()
-                    .map { .transactions(.init(
-                        transactions: $0.viewStateTransactions,
-                        totalAmount: $0.viewStateTotalAmount
-                    ))}
-                    .catch { .just(.error($0.localizedDescription)) }
-            )
+        .flatMapLatest { unretainedSelf, _ in
+            Observable.just(.loading)
+                .concat(
+                    unretainedSelf.getTransactionsUseCase()
+                        .map(State.transactions)
+                        .catch { .just(.error($0)) }
+                )
         }
-        .observe(on: Container.shared.mainScheduler())
         .share()
+    
+    private(set) lazy var outputToView = OutputToView(
+        viewState: state
+            .map(\.asViewState)
+            .observe(on: Container.shared.mainScheduler())
+    )
+    
+    private(set) lazy var outputToCoordinator = OutputToCoordinator(
+        openTransaction: inputFromView
+            .userClickedOnTransaction
+            .withLatestFrom(state) {
+                $1.transactions[$0]
+            }
     )
     
     init(inputFromView: InputFromView) {
@@ -87,6 +105,26 @@ extension TransactionsViewModel.ViewState {
     
     var errorDescription: String? {
         if case .error(let errorDescription) = self { errorDescription } else { nil }
+    }
+}
+
+private extension TransactionsViewModel.State {
+    var asViewState: TransactionsViewModel.ViewState {
+        switch self {
+        case .loading:
+            .loading
+        case .error(let error):
+            .error(error.localizedDescription)
+        case .transactions(let transactions):
+            .transactions(.init(
+                transactions: transactions.viewStateTransactions,
+                totalAmount: transactions.viewStateTotalAmount
+            ))
+        }
+    }
+    
+    var transactions: [Transaction] {
+        if case let .transactions(transactions) = self { transactions } else { [] }
     }
 }
 

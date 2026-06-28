@@ -125,6 +125,30 @@ class TransactionsViewModelTests: XCTestCase {
             .next(5, .error("Oh no!")),
         ])
     }
+    
+    func testViewModelOpensTransactionOntap() {
+        let getTransactionsUseCase = MockGetTransactionsUseCase()
+        getTransactionsUseCase.stub = Stub { .just(.mock) }
+        let userClickedOnTransaction = PublishSubject<Int>()
+        let transactionIDObserver = testScheduler.createObserver(String.self)
+        
+        Container.shared.getTransactionsUseCase { getTransactionsUseCase }
+        
+        let sut = TransactionsViewModel(inputFromView: .init(
+            userClickedOnTransaction: userClickedOnTransaction.asObservable(),
+            userClickOnRetry: .never(),
+            userRefreshed: .never()
+        ))
+        sut.outputToCoordinator.openTransaction.map(\.id)
+            .bind(to: transactionIDObserver)
+            .disposed(by: disposeBag)
+        testScheduler.scheduleAt(5) { userClickedOnTransaction.onNext(2) }
+        testScheduler.start()
+        
+        XCTAssertEqual(transactionIDObserver.events, [
+            .next(5, "D3DEA17BAC954E01"),
+        ])
+    }
 }
 
 private extension TransactionsViewModel.ViewState.Transactions {
