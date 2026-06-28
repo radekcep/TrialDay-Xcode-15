@@ -2,12 +2,16 @@
 //  Copyright © 2022 Erste Group Bank AG. All rights reserved.
 //
 
+import FactoryKit
 import Foundation
 
-public class TransactionsAPI {
+protocol TransactionsAPIProtocol {
+    func loadTransactions(completion: @escaping (Result<[Transaction], APIError>) -> Void)
+}
 
+public class TransactionsAPI: TransactionsAPIProtocol {
     /// Loads a list of transaction - you can assume that all transactions have the same currency
-    public func loadTransactions(completion: @escaping (Result<[Transaction], APIError>) -> Void) {
+    public func loadTransactions(completion: @escaping (Result<[Transaction], APIError>) -> Void) {        
         DispatchQueue.main.asyncAfter(deadline: .now() + (Double(arc4random_uniform(5000)) / 1000.0)) {
             switch arc4random_uniform(100) {
             case 0..<25:
@@ -31,5 +35,10 @@ public class TransactionsAPI {
             return [Transaction]()
         }
     }
+}
 
+extension Container {
+    var transactionsAPI: Factory<TransactionsAPIProtocol> {
+        self(TransactionsAPI.init)
+    }
 }

@@ -101,16 +101,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		BF7ECFCB2FEE7B6200B44EDB /* TransactionsAPI */ = {
-			isa = PBXGroup;
-			children = (
-				E1088D712031F75600889B04 /* transactions.json */,
-				E1088D6E2031E67A00889B04 /* TransactionsAPI.swift */,
-				E1070CA7203B219B009EECE4 /* Models.swift */,
-			);
-			path = TransactionsAPI;
-			sourceTree = "<group>";
-		};
 		BF7ECFCC2FEE7C3500B44EDB /* RootFeature */ = {
 			isa = PBXGroup;
 			children = (
@@ -218,6 +208,24 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
+		BF7ED0E32FEFE69000B44EDB /* TransactionsFeture */ = {
+			isa = PBXGroup;
+			children = (
+				BF7ED0E42FEFE6A600B44EDB /* Data */,
+			);
+			path = TransactionsFeture;
+			sourceTree = "<group>";
+		};
+		BF7ED0E42FEFE6A600B44EDB /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				E1088D712031F75600889B04 /* transactions.json */,
+				E1088D6E2031E67A00889B04 /* TransactionsAPI.swift */,
+				E1070CA7203B219B009EECE4 /* Models.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		E1088D402031E49300889B04 = {
 			isa = PBXGroup;
 			children = (
@@ -247,7 +255,7 @@
 				BF7ED0402FEE80C200B44EDB /* Common */,
 				BF7ECFCC2FEE7C3500B44EDB /* RootFeature */,
 				BF7ED0612FEEA28800B44EDB /* SplashScreenFeature */,
-				BF7ECFCB2FEE7B6200B44EDB /* TransactionsAPI */,
+				BF7ED0E32FEFE69000B44EDB /* TransactionsFeture */,
 			);
 			path = Trial;
 			sourceTree = "<group>";
