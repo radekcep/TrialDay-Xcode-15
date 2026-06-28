@@ -24,7 +24,7 @@ class RootCoordinator: RootCoordinatorProtocol {
     }
     
     func start() -> Single<Void> {
-        let rootViewController = UIViewController()
+        let rootViewController = UINavigationController()
         rootViewController.view.backgroundColor = .systemBackground
         window.rootViewController = rootViewController
         window.makeKeyAndVisible()
@@ -35,10 +35,10 @@ class RootCoordinator: RootCoordinatorProtocol {
             presentSplash(over: rootViewController)
                 .asObservable()
                 .withUnretained(self)
-                .flatMapLatest { $0.0.presentTransactionsList() }
+                .flatMapLatest { $0.0.presentTransactionsList(in: rootViewController) }
                 .asSingle()
         } else {
-            presentTransactionsList()
+            presentTransactionsList(in: rootViewController)
         }
     }
 }
@@ -49,8 +49,9 @@ private extension RootCoordinator {
         return start(splashScreenCoordinator)
     }
     
-    func presentTransactionsList() -> Single<Void> {
-        .never()
+    func presentTransactionsList(in navigationController: UINavigationController) -> Single<Void> {
+        let transactionsCoordinator = Container.shared.transactionsCoordinator(navigationController)
+        return start(transactionsCoordinator)
     }
 }
 

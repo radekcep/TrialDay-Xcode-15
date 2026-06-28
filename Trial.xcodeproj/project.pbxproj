@@ -29,6 +29,15 @@
 		BF7ED0702FEEC7C300B44EDB /* Spacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7ED06F2FEEC7C100B44EDB /* Spacing.swift */; };
 		BF7ED0DF2FEEE53400B44EDB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7ED0DE2FEEE53400B44EDB /* SceneDelegate.swift */; };
 		BF7ED0E22FEEE6CA00B44EDB /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7ED0E12FEEE6C700B44EDB /* Coordinator.swift */; };
+		BF7ED0E82FEFE70400B44EDB /* TransactionsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7ED0E72FEFE6FC00B44EDB /* TransactionsCoordinator.swift */; };
+		BF7ED0EA2FEFE79E00B44EDB /* TransactionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7ED0E92FEFE79200B44EDB /* TransactionsViewController.swift */; };
+		BF7ED0EC2FEFE7B000B44EDB /* TransactionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7ED0EB2FEFE7AB00B44EDB /* TransactionsViewModel.swift */; };
+		BF7ED0EE2FEFEB2900B44EDB /* GetTransactionsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7ED0ED2FEFEB2200B44EDB /* GetTransactionsUseCase.swift */; };
+		BF7ED0F02FEFF2E800B44EDB /* TransactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7ED0EF2FEFF2E200B44EDB /* TransactionCell.swift */; };
+		BF7ED0F32FF10A8500B44EDB /* TransactionsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7ED0F22FF10A8200B44EDB /* TransactionsViewModelTests.swift */; };
+		BF7ED0F52FF10B3600B44EDB /* RxTest in Frameworks */ = {isa = PBXBuildFile; productRef = BF7ED0F42FF10B3600B44EDB /* RxTest */; };
+		BF7ED0F72FF10C2800B44EDB /* Transactions+mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7ED0F62FF10C2200B44EDB /* Transactions+mock.swift */; };
+		BF7ED0F92FF115C700B44EDB /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7ED0F82FF115C100B44EDB /* ErrorView.swift */; };
 		E1070CA8203B219B009EECE4 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1070CA7203B219B009EECE4 /* Models.swift */; };
 		E1088D4D2031E49300889B04 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1088D4C2031E49300889B04 /* AppDelegate.swift */; };
 		E1088D542031E49300889B04 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1088D532031E49300889B04 /* Assets.xcassets */; };
@@ -67,6 +76,14 @@
 		BF7ED06F2FEEC7C100B44EDB /* Spacing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spacing.swift; sourceTree = "<group>"; };
 		BF7ED0DE2FEEE53400B44EDB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		BF7ED0E12FEEE6C700B44EDB /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		BF7ED0E72FEFE6FC00B44EDB /* TransactionsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsCoordinator.swift; sourceTree = "<group>"; };
+		BF7ED0E92FEFE79200B44EDB /* TransactionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsViewController.swift; sourceTree = "<group>"; };
+		BF7ED0EB2FEFE7AB00B44EDB /* TransactionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsViewModel.swift; sourceTree = "<group>"; };
+		BF7ED0ED2FEFEB2200B44EDB /* GetTransactionsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTransactionsUseCase.swift; sourceTree = "<group>"; };
+		BF7ED0EF2FEFF2E200B44EDB /* TransactionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCell.swift; sourceTree = "<group>"; };
+		BF7ED0F22FF10A8200B44EDB /* TransactionsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsViewModelTests.swift; sourceTree = "<group>"; };
+		BF7ED0F62FF10C2200B44EDB /* Transactions+mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Transactions+mock.swift"; sourceTree = "<group>"; };
+		BF7ED0F82FF115C100B44EDB /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		E1070CA7203B219B009EECE4 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		E1088D492031E49300889B04 /* Trial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Trial.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1088D4C2031E49300889B04 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -95,6 +112,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF7ED0F52FF10B3600B44EDB /* RxTest in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -169,6 +187,7 @@
 			children = (
 				BF7ED0542FEE87F400B44EDB /* Stub.swift */,
 				BF7ED0522FEE876900B44EDB /* MockKeyValueStorage.swift */,
+				BF7ED0F62FF10C2200B44EDB /* Transactions+mock.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -178,6 +197,7 @@
 			children = (
 				BF7ED06F2FEEC7C100B44EDB /* Spacing.swift */,
 				BF7ED05C2FEE8D9900B44EDB /* DogeView.swift */,
+				BF7ED0F82FF115C100B44EDB /* ErrorView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -212,6 +232,9 @@
 			isa = PBXGroup;
 			children = (
 				BF7ED0E42FEFE6A600B44EDB /* Data */,
+				BF7ED0E62FEFE6E300B44EDB /* Domain */,
+				BF7ED0E52FEFE6D800B44EDB /* View */,
+				BF7ED0E72FEFE6FC00B44EDB /* TransactionsCoordinator.swift */,
 			);
 			path = TransactionsFeture;
 			sourceTree = "<group>";
@@ -224,6 +247,32 @@
 				E1070CA7203B219B009EECE4 /* Models.swift */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		BF7ED0E52FEFE6D800B44EDB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BF7ED0EF2FEFF2E200B44EDB /* TransactionCell.swift */,
+				BF7ED0EB2FEFE7AB00B44EDB /* TransactionsViewModel.swift */,
+				BF7ED0E92FEFE79200B44EDB /* TransactionsViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BF7ED0E62FEFE6E300B44EDB /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				BF7ED0ED2FEFEB2200B44EDB /* GetTransactionsUseCase.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		BF7ED0F12FF10A6700B44EDB /* TransactionsFeature */ = {
+			isa = PBXGroup;
+			children = (
+				BF7ED0F22FF10A8200B44EDB /* TransactionsViewModelTests.swift */,
+			);
+			path = TransactionsFeature;
 			sourceTree = "<group>";
 		};
 		E1088D402031E49300889B04 = {
@@ -265,6 +314,7 @@
 			children = (
 				BF7ED0512FEE875D00B44EDB /* Common */,
 				BF7ED04E2FEE871800B44EDB /* RootFeatureTests */,
+				BF7ED0F12FF10A6700B44EDB /* TransactionsFeature */,
 				E1088D612031E49300889B04 /* TrialTests.swift */,
 				E1088D632031E49300889B04 /* Info.plist */,
 			);
@@ -382,21 +432,27 @@
 			buildActionMask = 2147483647;
 			files = (
 				BF7ED0E22FEEE6CA00B44EDB /* Coordinator.swift in Sources */,
+				BF7ED0EC2FEFE7B000B44EDB /* TransactionsViewModel.swift in Sources */,
 				BF7ECFCE2FEE7C4700B44EDB /* RootCoordinator.swift in Sources */,
 				BF7ED05D2FEE8DA100B44EDB /* DogeView.swift in Sources */,
 				E1088D4D2031E49300889B04 /* AppDelegate.swift in Sources */,
 				BF7ED04D2FEE852100B44EDB /* KeyValueStorage.swift in Sources */,
 				E1088D6F2031E67A00889B04 /* TransactionsAPI.swift in Sources */,
+				BF7ED0EA2FEFE79E00B44EDB /* TransactionsViewController.swift in Sources */,
 				BF7ED0DF2FEEE53400B44EDB /* SceneDelegate.swift in Sources */,
 				BF7ED0682FEEA47F00B44EDB /* SplashScreenViewModel.swift in Sources */,
 				BF7ED0662FEEA46200B44EDB /* SplashScreenViewController.swift in Sources */,
 				BF7ED0702FEEC7C300B44EDB /* Spacing.swift in Sources */,
 				BF7ED0422FEE80D200B44EDB /* Container+mainScheduler.swift in Sources */,
+				BF7ED0EE2FEFEB2900B44EDB /* GetTransactionsUseCase.swift in Sources */,
+				BF7ED0F02FEFF2E800B44EDB /* TransactionCell.swift in Sources */,
 				BF7ED0482FEE840400B44EDB /* IncrementAppLaunchCountUseCase.swift in Sources */,
+				BF7ED0E82FEFE70400B44EDB /* TransactionsCoordinator.swift in Sources */,
 				BF7ED06E2FEEC78C00B44EDB /* UIButton+Configuration.swift in Sources */,
 				E1070CA8203B219B009EECE4 /* Models.swift in Sources */,
 				BF7ED0462FEE83F600B44EDB /* GetAppLaunchCountUseCase.swift in Sources */,
 				BF7ED0632FEEA2A300B44EDB /* SplashScreenCoordinator.swift in Sources */,
+				BF7ED0F92FF115C700B44EDB /* ErrorView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -406,7 +462,9 @@
 			files = (
 				BF7ED0502FEE873000B44EDB /* IncrementAppLaunchCountUseCaseTests.swift in Sources */,
 				BF7ED0582FEE8B6400B44EDB /* GetAppLaunchCountUseCaseTests.swift in Sources */,
+				BF7ED0F32FF10A8500B44EDB /* TransactionsViewModelTests.swift in Sources */,
 				BF7ED0532FEE877700B44EDB /* MockKeyValueStorage.swift in Sources */,
+				BF7ED0F72FF10C2800B44EDB /* Transactions+mock.swift in Sources */,
 				E1088D622031E49300889B04 /* TrialTests.swift in Sources */,
 				BF7ED05A2FEE8C3E00B44EDB /* RootCoordinatorTests.swift in Sources */,
 				BF7ED0552FEE87F600B44EDB /* Stub.swift in Sources */,
@@ -699,6 +757,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = BF7ECFCF2FEE7CC000B44EDB /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxCocoa;
+		};
+		BF7ED0F42FF10B3600B44EDB /* RxTest */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BF7ECFCF2FEE7CC000B44EDB /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxTest;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
