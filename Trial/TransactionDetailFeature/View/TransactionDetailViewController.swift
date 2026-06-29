@@ -16,7 +16,7 @@ class TransactionDetailViewController: UIViewController {
     private let containerStackView = UIStackView()
     private let titleLabel = UILabel()
     private let subtitleLabel = UILabel()
-    private let dogeView = DogeView(frame: .zero, keywords: Constant.keywords)
+    private let dogeView = DogeView(keywords: Constant.keywords)
     private let viewIsMovingFromParent = PublishSubject<Void>()
     private var viewModel: TransactionDetailViewModel!
     
@@ -57,18 +57,29 @@ private extension TransactionDetailViewController {
     
     func constraintSubviews() {
         containerStackView.snp.makeConstraints { make in
-            make.edges.equalTo(view.safeAreaLayoutGuide).inset(Spacing.l)
+            make.top.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(Spacing.l)
         }
     }
     
     func setupSubviews() {
-        containerStackView.axis = .vertical
-        containerStackView.distribution = .equalSpacing
-        containerStackView.alignment = .fill
+        view.backgroundColor = UIColor(resource: .background)
         
-        titleLabel.font = .preferredFont(forTextStyle: .largeTitle)
+        containerStackView.axis = .vertical
+        containerStackView.distribution = .fill
+        containerStackView.alignment = .fill
+        containerStackView.spacing = Spacing.l
+        
+        containerStackView.setCustomSpacing(Spacing.s, after: titleLabel)
+        
+        titleLabel.font = .heavyTitle
+        titleLabel.textColor = UIColor(resource: .text)
         titleLabel.textAlignment = .center
         titleLabel.numberOfLines = .zero
+        
+        subtitleLabel.font = .subtitle
+        subtitleLabel.textColor = UIColor(resource: .text)
+        subtitleLabel.textAlignment = .center
+        subtitleLabel.numberOfLines = .zero
     }
 }
 
@@ -112,5 +123,126 @@ private enum Constant {
 
 @available(iOS 18, *)
 #Preview {
-    TransactionDetailViewController()
+    func makeViewController() -> UIViewController {
+        let transaction = Trial.Transaction(
+            id: "D3E0BD0330B14C01",
+            title: "MA 10 Wiener Kindergaerten",
+            subtitle: Optional(
+                "MA 10 Wiener Kindergaerten/Wilma Ri"
+            ),
+            sender: Trial.AccountNumber(
+                iban: Optional(
+                    "AT601200051428010635"
+                ),
+                bic: Optional(
+                    "BKAUATWWXXX"
+                ),
+                number: nil,
+                bankCode: nil,
+                prefix: Optional(
+                    ""
+                ),
+                countryCode: Optional(
+                    "AT"
+                )
+            ),
+            senderName: Optional(
+                "Stadt Wien"
+            ),
+            senderOriginator: Optional(
+                "MA 10 Wiener Kindergaerten"
+            ),
+            senderReference: "002202296141",
+            senderBankReference: nil,
+            receiver: Trial.AccountNumber(
+                iban: Optional(
+                    "AT552011182743536500"
+                ),
+                bic: Optional(
+                    "GIBAATWWXXX"
+                ),
+                number: Optional(
+                    "82743536500"
+                ),
+                bankCode: Optional(
+                    "20111"
+                ),
+                prefix: Optional(
+                    ""
+                ),
+                countryCode: Optional(
+                    "AT"
+                )
+            ),
+            receiverName: Optional(
+                "Birgit Anna Mayer"
+            ),
+            receiverReference: "",
+            creditorId: "AT03MAG00000009679",
+            amount: Trial.Amount(
+                value: -6535,
+                precision: 2,
+                currency: "EUR"
+            ),
+            amountSender: Trial.Amount(
+                value: -6535,
+                precision: 2,
+                currency: "EUR"
+            ),
+            bookingDate: Date(timeIntervalSince1970: 1518390000),
+            valuationDate: Date(timeIntervalSince1970: 1518390000),
+            importDate: Date(timeIntervalSince1970: 1518403980),
+            dueDate: nil,
+            exchangeDate: nil,
+            insertTimestamp: Date(timeIntervalSince1970: 1518407555),
+            reference: "1200018020810550037217259240",
+            originatorSystem: "SD*/EZG",
+            additionalTexts: Trial.AdditionalTexts(
+                text1: "MA 10 Wiener Kindergaerten/Wilma Ri",
+                text2: "MA 10 Wiener Kindergaerten",
+                text3: "MDID:00206579811000001",
+                lineItems: [
+                    "MA 10 Wiener Kindergaerten/Wilma Ri",
+                    "nner/Elternbeitraege Wiener Kinderg",
+                    "aert/PDezember 2017 V121282892"
+                ],
+                constantSymbol: nil,
+                variableSymbol: nil,
+                specificSymbol: nil
+            ),
+            note: nil,
+            bookingType: "DU-BK-DD",
+            bookingTypeTranslation: nil,
+            orderRole: "RECEIVER",
+            orderCategory: Optional(
+                "DOMESTIC"
+            ),
+            cardId: "0000000000000000",
+            maskedCardNumber: "",
+            invoiceId: nil,
+            location: "",
+            partnerName: Optional(
+                "Stadt Wien"
+            ),
+            partnerOriginator: Optional(
+                "MA 10 Wiener Kindergaerten"
+            ),
+            partnerAddress: [
+                "Neues Rathaus 1",
+                "1080 Wien"
+            ]
+        )
+        
+        let viewController = TransactionDetailViewController()
+        _ = viewController.view
+        
+        viewController.bind(viewModel: TransactionDetailViewModel(
+            inputFromView: viewController.viewModelInput,
+            inputFromCoordinator: .init(transaction: transaction)
+        ))
+        
+        return UINavigationController(rootViewController: viewController)
+    }
+    
+    return makeViewController()
 }

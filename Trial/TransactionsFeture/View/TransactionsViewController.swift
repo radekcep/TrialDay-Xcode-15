@@ -13,10 +13,11 @@ import RxSwift
 import SnapKit
 
 class TransactionsViewController: UIViewController {
-    private let totalAmountLabel = UILabel()
+    private let amountPillView = AmountPillView()
     private let refreshControl = UIRefreshControl()
     private let tableView = UITableView()
-    private let errorView = ErrorView(frame: .zero)
+    private let errorView = ErrorView()
+    private let viewIsAppearing = PublishSubject<Void>()
     private var viewModel: TransactionsViewModel!
     private var disposeBag = DisposeBag()
     
@@ -35,6 +36,11 @@ class TransactionsViewController: UIViewController {
         constraintSubviews()
         setupSubviews()
     }
+    
+    override func viewIsAppearing(_ animated: Bool) {
+        super.viewIsAppearing(animated)
+        viewIsAppearing.onNext(())
+    }
 }
 
 // MARK: - UI Setup
@@ -50,18 +56,25 @@ private extension TransactionsViewController {
             make.edges.equalToSuperview()
         }
         errorView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.horizontalEdges.equalToSuperview()
+            make.center.equalToSuperview()
         }
     }
     
     func setupSubviews() {
-        title = "Transactions"
-        
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: totalAmountLabel)
+        navigationController?.navigationBar.titleTextAttributes = [
+            .font: UIFont.title,
+            .foregroundColor: UIColor(resource: .text)
+        ]
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: amountPillView)
         if #available(iOS 26.0, *) {
             navigationItem.rightBarButtonItem?.hidesSharedBackground = true
         }
         
+        title = "Transactions"
+        view.backgroundColor = UIColor(resource: .background)
+        
+        tableView.backgroundColor = .clear
         tableView.refreshControl = refreshControl
         tableView.register(TransactionCell.self, forCellReuseIdentifier: Constant.transactionCellIdentifier)
         
@@ -70,6 +83,9 @@ private extension TransactionsViewController {
                 $0.tableView.deselectRow(at: $1, animated: true)
             }
             .disposed(by: disposeBag)
+        
+        refreshControl.tintColor = UIColor(resource: .primary)
+        refreshControl.tintColorDidChange()
         
         errorView.isHidden = true
     }
@@ -88,19 +104,36 @@ extension TransactionsViewController {
     
     func bind(viewModel: TransactionsViewModel) {
         self.viewModel = viewModel
-                
+        
         viewModel.outputToView.viewState
             .map(\.totalAmount)
             .withUnretained(self)
-            .subscribe(onNext: {
-                $0.0.totalAmountLabel.text = $0.1
-                $0.0.totalAmountLabel.sizeToFit()
+            .subscribe(onNext: { unretainedSelf, totalAmount in
+                if let totalAmount {
+                    unretainedSelf.amountPillView.load(totalAmount.text, isNegative: totalAmount.isNegative)
+                    unretainedSelf.amountPillView.sizeToFit()
+                    unretainedSelf.amountPillView.isHidden = false
+                } else {
+                    unretainedSelf.amountPillView.isHidden = true
+                }
             })
             .disposed(by: disposeBag)
         
         viewModel.outputToView.viewState
             .map(\.isLoading)
+            .skip(until: viewIsAppearing)
             .bind(to: refreshControl.rx.isRefreshing)
+            .disposed(by: disposeBag)
+                
+        // `refreshControl` cannot be controlled before `viewIsAppearing` is called
+        viewIsAppearing.take(1)
+            .withLatestFrom(viewModel.outputToView.viewState)
+            .filter { $0.isLoading }
+            .withUnretained(self)
+            .subscribe(onNext: { unretainedSelf, _ in
+                unretainedSelf.tableView.contentOffset = CGPoint(x: 0, y: -unretainedSelf.refreshControl.frame.height)
+                unretainedSelf.refreshControl.beginRefreshing()
+            })
             .disposed(by: disposeBag)
         
         viewModel.outputToView.viewState
@@ -144,11 +177,26 @@ private enum Constant {
 #Preview {
     func makeViewController() -> UIViewController {
         class MockViewModel: TransactionsViewModel {
+            let transaction = TransactionsViewModel.ViewState.Transaction(
+                title: "MA 10 Wiener Kindergaerten",
+                subtitle: Optional("MA 10 Wiener Kindergaerten/Wilma Ri"),
+                lineItems: Optional("MA 10 Wiener Kindergaerten/Wilma Rinner/Elternbeitraege Wiener Kindergaert/PDezember 2017 V121282892"),
+                amount: Optional("-65,35"),
+                isNegative: true
+            )
+            lazy var transactions = Array(repeating: transaction, count: 5)
+            
+//            override var outputToView: TransactionsViewModel.OutputToView {
+//                .init(viewState: .just(.transactions(.init(transactions: transactions, totalAmount: "-100,00", isNegative: true))))
+//            }
+            
             override var outputToView: TransactionsViewModel.OutputToView {
-                .init(viewState: .just(.error("Oh no!")))
+                .init(viewState: .just(.loading))
             }
         }
+        
         let viewController = TransactionsViewController()
+        _ = viewController.view
         viewController.bind(viewModel: MockViewModel(inputFromView: viewController.viewModelInput))
         return UINavigationController(rootViewController: viewController)
     }

@@ -9,6 +9,8 @@
 import UIKit
 
 enum Spacing {
+    static let xxxs: CGFloat = 1
+    static let xxs: CGFloat = 3
     static let xs: CGFloat = 6
     static let s: CGFloat = 12
     static let m: CGFloat = 18

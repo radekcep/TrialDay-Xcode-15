@@ -14,7 +14,7 @@ import SnapKit
 class SplashScreenViewController: UIViewController {
     private let containerStackView = UIStackView()
     private let titleLabel = UILabel()
-    private let dogeView = DogeView(frame: .zero, keywords: Constant.keywords)
+    private let dogeView = DogeView(keywords: Constant.keywords)
     private let actionButton = UIButton()
     private var viewModel: SplashScreenViewModel!
     
@@ -52,16 +52,19 @@ private extension SplashScreenViewController {
     }
     
     func setupSubviews() {
+        view.backgroundColor = UIColor(resource: .background)
+        
         containerStackView.axis = .vertical
         containerStackView.distribution = .equalSpacing
         containerStackView.alignment = .fill
         
-        titleLabel.text = "Welcome to the App"
-        titleLabel.font = .preferredFont(forTextStyle: .largeTitle)
+        titleLabel.text = "Splash Screen"
+        titleLabel.textColor = UIColor(resource: .text)
+        titleLabel.font = .heavyTitle
         titleLabel.textAlignment = .center
         titleLabel.numberOfLines = .zero
         
-        actionButton.setTitle("Continue", for: .normal)
+        actionButton.setTitle("Close", for: .normal)
         actionButton.configuration = .primary
     }
 }

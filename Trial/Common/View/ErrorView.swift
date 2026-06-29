@@ -11,7 +11,8 @@ import RxSwift
 
 class ErrorView: UIView {
     private let containerStackView = UIStackView()
-    private let dogeView = DogeView(frame: .zero, keywords: Constant.keywords)
+    private let dogeView = DogeView(keywords: Constant.keywords)
+    private let titleLabel = UILabel()
     private let descriptionLabel = UILabel()
     private let retryButton = UIButton()
     
@@ -38,8 +39,9 @@ class ErrorView: UIView {
 private extension ErrorView {
     func addSubviews() {
         addSubview(containerStackView)
-        containerStackView.addArrangedSubview(dogeView)
+        containerStackView.addArrangedSubview(titleLabel)
         containerStackView.addArrangedSubview(descriptionLabel)
+        containerStackView.addArrangedSubview(dogeView)
         containerStackView.addArrangedSubview(retryButton)
     }
     
@@ -51,9 +53,17 @@ private extension ErrorView {
     
     func setupSubviews() {
         containerStackView.axis = .vertical
-        containerStackView.distribution = .equalSpacing
-        containerStackView.alignment = .fill
+        containerStackView.distribution = .fill
+        containerStackView.alignment = .center
+        containerStackView.spacing = Spacing.m
         
+        containerStackView.setCustomSpacing(Spacing.xs, after: titleLabel)
+        
+        titleLabel.text = "Something went wrong"
+        titleLabel.textColor = UIColor(resource: .text)
+        titleLabel.font = .title
+        
+        descriptionLabel.textColor = UIColor(resource: .text)
         descriptionLabel.textAlignment = .center
         descriptionLabel.numberOfLines = .zero
         
@@ -78,4 +88,14 @@ private enum Constant {
         "Retry pls",
         "So bad",
     ]
+}
+
+// MARK: - Preview
+
+@available(iOS 18, *)
+#Preview {
+    let errorView = ErrorView()
+    errorView.load("The operation couldn't be completed. (Trial.APIError error O.)")
+    
+    return errorView
 }

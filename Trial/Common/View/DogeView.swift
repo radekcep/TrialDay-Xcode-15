@@ -16,7 +16,7 @@ class DogeView: UIView {
     private let keywords: [String]
     private var animationTask: Task<(), Never>?
     
-    init(frame: CGRect, keywords: [String]) {
+    init(frame: CGRect = .zero, keywords: [String]) {
         self.keywords = keywords
         super.init(frame: frame)
         
@@ -90,7 +90,7 @@ private extension DogeView {
         label.alpha = .zero
         label.text = text
         label.textColor = color
-        label.font = .preferredFont(forTextStyle: .headline)
+        label.font = .boldBody
         label.transform = CGAffineTransform(scaleX: Constant.textInOutScale, y: Constant.textInOutScale)
         
         let randomCoordinates = CGPoint(
@@ -146,7 +146,7 @@ private enum Constant {
 
 @available(iOS 18, *)
 #Preview {
-    DogeView(frame: .zero, keywords: [
+    DogeView(keywords: [
         "Wow",
         "Such preview",
         "Many words",

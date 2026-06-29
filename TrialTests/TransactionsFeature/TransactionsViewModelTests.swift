@@ -158,34 +158,40 @@ private extension TransactionsViewModel.ViewState.Transactions {
                 title: "MA 10 Wiener Kindergaerten",
                 subtitle: "MA 10 Wiener Kindergaerten/Wilma Ri",
                 lineItems: "MA 10 Wiener Kindergaerten/Wilma Rinner/Elternbeitraege Wiener Kindergaert/PDezember 2017 V121282892",
-                amount: "-65,35"
+                amount: "-65,35",
+                isNegative: true
             ),
             .init(
                 title: "DM-FIL. 0609",
                 subtitle: "Payment with card 1 on the 10. Feb. at 17:38.",
                 lineItems: nil,
-                amount: "-15,55"
+                amount: "-15,55",
+                isNegative: true
             ),
             .init(
                 title: "HOFER DANKT",
                 subtitle: "Payment with card 2 on the 10. Feb. at 12:18.",
                 lineItems: nil,
-                amount: "-15,92"
+                amount: "-15,92",
+                isNegative: true
             ),
             .init(
                 title: "SPAR DANKT 4249 WIEN",
                 subtitle: "Payment with card 2 on the 9. Feb. at 15:18.",
                 lineItems: nil,
-                amount: "-18,09"
+                amount: "-18,09",
+                isNegative: true
             ),
             .init(
                 title: "Birgit Mayer",
                 subtitle: "Miete Februar",
                 lineItems: nil,
-                amount: "435,00"
+                amount: "435,00",
+                isNegative: false
             )
         ],
-        totalAmount: "320,09"
+        totalAmount: "320,09",
+        isNegative: false
     )
 }
 

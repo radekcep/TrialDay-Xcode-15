@@ -42,6 +42,9 @@
 		BF7ED0FF2FF1208000B44EDB /* TransactionDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7ED0FE2FF1207900B44EDB /* TransactionDetailViewController.swift */; };
 		BF7ED1012FF1208800B44EDB /* TransactionDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7ED1002FF1208300B44EDB /* TransactionDetailViewModel.swift */; };
 		BF7ED1032FF13ACB00B44EDB /* TransactionsCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7ED1022FF13AC800B44EDB /* TransactionsCoordinatorTests.swift */; };
+		BF7ED1062FF1ACC800B44EDB /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF7ED1052FF1ACC800B44EDB /* Colors.xcassets */; };
+		BF7ED1082FF25DAD00B44EDB /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7ED1072FF25DA300B44EDB /* UIFont+.swift */; };
+		BF7ED10A2FF25E9200B44EDB /* AmountPillView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7ED1092FF25E9200B44EDB /* AmountPillView.swift */; };
 		E1070CA8203B219B009EECE4 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1070CA7203B219B009EECE4 /* Models.swift */; };
 		E1088D4D2031E49300889B04 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1088D4C2031E49300889B04 /* AppDelegate.swift */; };
 		E1088D542031E49300889B04 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1088D532031E49300889B04 /* Assets.xcassets */; };
@@ -92,6 +95,9 @@
 		BF7ED0FE2FF1207900B44EDB /* TransactionDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDetailViewController.swift; sourceTree = "<group>"; };
 		BF7ED1002FF1208300B44EDB /* TransactionDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDetailViewModel.swift; sourceTree = "<group>"; };
 		BF7ED1022FF13AC800B44EDB /* TransactionsCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsCoordinatorTests.swift; sourceTree = "<group>"; };
+		BF7ED1052FF1ACC800B44EDB /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		BF7ED1072FF25DA300B44EDB /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
+		BF7ED1092FF25E9200B44EDB /* AmountPillView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmountPillView.swift; sourceTree = "<group>"; };
 		E1070CA7203B219B009EECE4 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		E1088D492031E49300889B04 /* Trial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Trial.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1088D4C2031E49300889B04 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -166,6 +172,7 @@
 		BF7ED04A2FEE844E00B44EDB /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				BF7ED1072FF25DA300B44EDB /* UIFont+.swift */,
 				BF7ED06D2FEEC78400B44EDB /* UIButton+Configuration.swift */,
 				BF7ED0412FEE80CA00B44EDB /* Container+mainScheduler.swift */,
 			);
@@ -204,6 +211,7 @@
 			isa = PBXGroup;
 			children = (
 				BF7ED06F2FEEC7C100B44EDB /* Spacing.swift */,
+				BF7ED1092FF25E9200B44EDB /* AmountPillView.swift */,
 				BF7ED05C2FEE8D9900B44EDB /* DogeView.swift */,
 				BF7ED0F82FF115C100B44EDB /* ErrorView.swift */,
 			);
@@ -327,6 +335,7 @@
 				E1088D4C2031E49300889B04 /* AppDelegate.swift */,
 				BF7ED0DE2FEEE53400B44EDB /* SceneDelegate.swift */,
 				E1088D532031E49300889B04 /* Assets.xcassets */,
+				BF7ED1052FF1ACC800B44EDB /* Colors.xcassets */,
 				E1088D582031E49300889B04 /* Info.plist */,
 				BF7ED0402FEE80C200B44EDB /* Common */,
 				BF7ECFCC2FEE7C3500B44EDB /* RootFeature */,
@@ -439,6 +448,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF7ED1062FF1ACC800B44EDB /* Colors.xcassets in Resources */,
 				E1088D542031E49300889B04 /* Assets.xcassets in Resources */,
 				E1088D722031F75600889B04 /* transactions.json in Resources */,
 			);
@@ -459,6 +469,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF7ED1082FF25DAD00B44EDB /* UIFont+.swift in Sources */,
 				BF7ED0E22FEEE6CA00B44EDB /* Coordinator.swift in Sources */,
 				BF7ED0EC2FEFE7B000B44EDB /* TransactionsViewModel.swift in Sources */,
 				BF7ECFCE2FEE7C4700B44EDB /* RootCoordinator.swift in Sources */,
@@ -475,6 +486,7 @@
 				BF7ED0702FEEC7C300B44EDB /* Spacing.swift in Sources */,
 				BF7ED0422FEE80D200B44EDB /* Container+mainScheduler.swift in Sources */,
 				BF7ED0EE2FEFEB2900B44EDB /* GetTransactionsUseCase.swift in Sources */,
+				BF7ED10A2FF25E9200B44EDB /* AmountPillView.swift in Sources */,
 				BF7ED0F02FEFF2E800B44EDB /* TransactionCell.swift in Sources */,
 				BF7ED0FF2FF1208000B44EDB /* TransactionDetailViewController.swift in Sources */,
 				BF7ED0482FEE840400B44EDB /* IncrementAppLaunchCountUseCase.swift in Sources */,

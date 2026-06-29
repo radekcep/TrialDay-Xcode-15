@@ -55,7 +55,7 @@ class TransactionsViewModel {
                         .catch { .just(.error($0)) }
                 )
         }
-        .share()
+        .share(replay: 1)
     
     private(set) lazy var outputToView = OutputToView(
         viewState: state
@@ -84,19 +84,24 @@ extension TransactionsViewModel.ViewState {
         let subtitle: String?
         let lineItems: String?
         let amount: String?
+        let isNegative: Bool
     }
     
     struct Transactions: Equatable {
         let transactions: [Transaction]
         let totalAmount: String?
+        let isNegative: Bool
     }
     
     var transactions: [Transaction] {
         if case let .transactions(transactions) = self { transactions.transactions } else { [] }
     }
     
-    var totalAmount: String? {
-        if case let .transactions(transactions) = self { transactions.totalAmount } else { nil }
+    var totalAmount: (text: String, isNegative: Bool)? {
+        guard case let .transactions(transactions) = self, let totalAmount = transactions.totalAmount else {
+            return nil
+        }
+        return (totalAmount, transactions.isNegative)
     }
     
     var isLoading: Bool {
@@ -118,7 +123,8 @@ private extension TransactionsViewModel.State {
         case .transactions(let transactions):
             .transactions(.init(
                 transactions: transactions.viewStateTransactions,
-                totalAmount: transactions.viewStateTotalAmount
+                totalAmount: [Transaction].amountFormatter.string(from: transactions.viewStateTotalAmount),
+                isNegative: transactions.viewStateTotalAmount.compare(NSDecimalNumber.zero) == .orderedAscending
             ))
         }
     }
@@ -129,7 +135,7 @@ private extension TransactionsViewModel.State {
 }
 
 private extension [Transaction] {
-    private static let amountFormatter: NumberFormatter = {
+    static let amountFormatter: NumberFormatter = {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
         formatter.minimumFractionDigits = 2
@@ -146,15 +152,15 @@ private extension [Transaction] {
                 title: $0.title,
                 subtitle: $0.subtitle,
                 lineItems: lineItems,
-                amount: Self.amountFormatter.string(from: $0.amount.decimalValue)
+                amount: Self.amountFormatter.string(from: $0.amount.decimalValue),
+                isNegative: $0.amount.decimalValue.compare(NSDecimalNumber.zero) == .orderedAscending
             )
         }
     }
     
-    var viewStateTotalAmount: String? {
-        let totalAmount = map(\.amount.decimalValue)
+    var viewStateTotalAmount: NSDecimalNumber {
+        map(\.amount.decimalValue)
             .reduce(NSDecimalNumber.zero) { $0.adding($1) }
-        return Self.amountFormatter.string(from: totalAmount)
     }
 }
 
